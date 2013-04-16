@@ -9,10 +9,10 @@
 
     .pull-right  
       - if logged_in?
-        =# link_to 'Logout', :logout, class: 'btn pull-right'
+        = link_to 'Log out', sessions_path, class: 'btn pull-right', method: 'delete'
         .navbar-text.pull-right
           = "Signed in as "
           = current_user.username
       - else
-        = link_to 'Register', register_path, class: 'btn btn-primary'
-        =# link_to 'Log In', :login, class: 'btn btn-primary'
+        = link_to 'Log in', :login, class: 'btn btn-primary'
+        = link_to 'Register', register_path, class: 'btn'

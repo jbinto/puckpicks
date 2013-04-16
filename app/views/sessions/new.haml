@@ -1,0 +1,17 @@
+-# Getting simple_form to work without a model
+-# http://stackoverflow.com/questions/9342277/does-form-tag-work-with-simple-form/12622896#12622896
+
+%h2 Log in
+
+.well.well-small
+
+  - form_defaults = { :input_html => { :class => "input-xlarge"} }
+  - form_html = { :class => "form-horizontal" }
+  = simple_form_for :login, { url: sessions_path, :html => form_html, :defaults => form_defaults  } do |f|
+    %fieldset
+      %legend Enter your credentials
+      = f.input :username
+      = f.input :password
+      .controls
+        = f.button :submit, :value => "Log in", :class => "btn btn-success"
+
