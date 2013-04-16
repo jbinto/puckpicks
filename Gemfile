@@ -10,6 +10,11 @@ gem 'bootstrap-sass'
 gem 'haml'
 gem 'jquery-rails'
 
+group :development do
+  gem 'better_errors'
+  gem 'pry-rails'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -28,4 +33,5 @@ group :test do
   gem "database_cleaner"
   gem "capybara"
   gem "capybara-webkit"
+  gem 'pry-rails'
 end
