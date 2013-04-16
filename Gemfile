@@ -9,6 +9,7 @@ gem 'sorcery'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'jquery-rails'
+gem 'simple_form'
 
 group :development do
   gem 'better_errors'

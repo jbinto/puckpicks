@@ -1,0 +1,15 @@
+%h2 Sign Up
+
+.well.well-small  
+  - form_defaults = { :input_html => { :class => "input-xlarge"} }
+  - form_html = { :class => "form-horizontal" }
+  = simple_form_for @user, { :html => form_html, :defaults => form_defaults } do |f|
+    %fieldset
+      %legend Your Profile
+      = render 'shared/form_errors', f: f
+      = f.input :username, hint: "pick something unique", placeholder: "(e.g.) thegreatone99"
+      = f.input :email, hint: "we won't share it, promise", placeholder: "(e.g.) wayne@gretzkys.com"
+      = f.input :password
+      = f.input :password_confirmation
+      .controls
+        = f.button :submit, :class => "btn btn-success"

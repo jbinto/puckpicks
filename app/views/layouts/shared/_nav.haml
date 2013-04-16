@@ -1,3 +1,18 @@
 .navbar.navbar-static-top
   .navbar-inner
     = link_to 'PuckPicks', root_path, class: 'brand'
+    %ul.nav
+      %li= link_to 'Foo', '#'
+      %li= link_to 'Bar', '#'
+      %li= link_to 'Baz', '#'
+      %li= link_to 'Qux', '#'
+
+    .pull-right  
+      - if logged_in?
+        =# link_to 'Logout', :logout, class: 'btn pull-right'
+        .navbar-text.pull-right
+          = "Signed in as "
+          = current_user.username
+      - else
+        = link_to 'Register', register_path, class: 'btn btn-primary'
+        =# link_to 'Log In', :login, class: 'btn btn-primary'
