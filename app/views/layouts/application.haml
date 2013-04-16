@@ -8,12 +8,9 @@
 
   %body
     .container
-      /= render 'layouts/shared/nav'
+      = render 'layouts/shared/nav'
       - if flash[:notice]
         .alert.alert-success= flash[:notice]
       - if flash[:alert]
         .alert.alert-error= flash[:alert]
       = yield
-    %footer
-      = yield :scripts
-
