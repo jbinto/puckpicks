@@ -11,22 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416163738) do
+ActiveRecord::Schema.define(:version => 20130416213119) do
+
+  create_table "games", :force => true do |t|
+    t.datetime "faceoff_time",                    :null => false
+    t.integer  "home_id",                         :null => false
+    t.integer  "away_id",                         :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "winner_id"
+    t.integer  "home_score"
+    t.integer  "away_score"
+    t.boolean  "finished",     :default => false, :null => false
+  end
+
+  add_index "games", ["away_id"], :name => "index_games_on_away_id"
+  add_index "games", ["home_id"], :name => "index_games_on_home_id"
 
   create_table "teams", :force => true do |t|
-    t.string   "code"
-    t.string   "city"
-    t.string   "name"
-    t.string   "logo"
+    t.string   "code",       :null => false
+    t.string   "city",       :null => false
+    t.string   "name",       :null => false
+    t.string   "logo",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "username",         :null => false
-    t.string   "email"
-    t.string   "crypted_password"
-    t.string   "salt"
+    t.string   "email",            :null => false
+    t.string   "crypted_password", :null => false
+    t.string   "salt",             :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
