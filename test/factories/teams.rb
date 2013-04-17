@@ -5,5 +5,6 @@ FactoryGirl.define do
     sequence(:code) { |n| "HT#{n}" }
     sequence(:city) { |n| "City #{n} " }
     name "Hockey Team"
+    logo { "#{code}.png" }
   end
 end
