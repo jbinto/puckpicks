@@ -14,6 +14,11 @@ class Pick < ActiveRecord::Base
     :message => "The team picked must be playing in the game."
   }
 
+  # Note: This was tricky. Can't use :game and :user here due
+  # to some quirks in Rails.
+  #
+  # See http://thetenelements.blogspot.ca/2011/08/undefined-method-text-for-nilnilclass.html?showComment=1366233346425#c3603757500714800844
+  # and http://stackoverflow.com/a/7032711/19779 for more.
   validates_uniqueness_of :game_id, :scope => :user_id,
     message: "You can only bet on this game once."
 end
