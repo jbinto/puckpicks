@@ -31,4 +31,28 @@ class PickTest < ActiveSupport::TestCase
     assert pick.errors[:team].count == 1
   end
 
+  test "user can only bet on a single game once" do
+    user = FactoryGirl.build(:user)
+    game = FactoryGirl.build(:game)
+    
+    # We actually have to use create here, since we're testing uniqueness. 
+    pick_home = FactoryGirl.create(:pick, :user => user, :game => game, :team => game.home)
+    assert pick_home.valid?
+
+    pick_away = FactoryGirl.build(:pick, :user => user, :game => game, :team => game.away)
+    refute pick_away.valid?
+  end
+
+  test "two different users can bet on the same game" do
+    user1 = FactoryGirl.build(:user)
+    user2 = FactoryGirl.build(:user)
+    game = FactoryGirl.build(:game)
+
+    pick1 = FactoryGirl.build(:pick, :game => game, :user => user1)
+    pick2 = FactoryGirl.build(:pick, :game => game, :user => user2)
+
+    assert pick1.valid?
+    assert pick2.valid?
+  end
+
 end
