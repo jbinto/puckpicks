@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416213119) do
+ActiveRecord::Schema.define(:version => 20130416214245) do
 
   create_table "games", :force => true do |t|
     t.datetime "faceoff_time",                    :null => false
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(:version => 20130416213119) do
 
   add_index "games", ["away_id"], :name => "index_games_on_away_id"
   add_index "games", ["home_id"], :name => "index_games_on_home_id"
+
+  create_table "picks", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "spread_wager"
+    t.integer  "impact"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "picks", ["game_id"], :name => "index_picks_on_game_id"
+  add_index "picks", ["team_id"], :name => "index_picks_on_team_id"
+  add_index "picks", ["user_id"], :name => "index_picks_on_user_id"
 
   create_table "teams", :force => true do |t|
     t.string   "code",       :null => false
