@@ -13,5 +13,4 @@ class Pick < ActiveRecord::Base
     :in => lambda { |pick| [pick.game.home, pick.game.away] },
     :message => "The team picked must be playing in the game."
   }
-
 end

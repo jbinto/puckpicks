@@ -33,6 +33,12 @@ class Game < ActiveRecord::Base
   validates :home_score, :presence => true, :if => :finished?
   validates :away_score, :presence => true, :if => :finished?
 
+  # Team that won must have played.
+  validates :winner, :if => :finished?, :inclusion => {
+    :in => lambda { |game| [game.home, game.away] },
+    :message => "The winning team must be either the home or away team"
+  }
+
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
   def set_result(opts)
