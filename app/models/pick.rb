@@ -9,11 +9,9 @@ class Pick < ActiveRecord::Base
   validates :user, :presence => true
   validates :spread_wager, :presence => true
 
-  validate :team_picked_must_be_playing
+  validates :team, :inclusion => { 
+    :in => lambda { |pick| [pick.game.home, pick.game.away] },
+    :message => "The team picked must be playing in the game."
+  }
 
-  def team_picked_must_be_playing
-    unless [game.home, game.away].include?(team)
-      errors.add(:team, "must be playing in this game")
-    end
-  end
 end

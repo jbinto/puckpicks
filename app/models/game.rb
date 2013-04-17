@@ -13,14 +13,22 @@ class Game < ActiveRecord::Base
   belongs_to :away, :class_name => "Team"
   belongs_to :winner, :class_name => "Team"
 
-  # Cannot be the same teams
-  validates :away, :exclusion => { :in => lambda { |game| [game.home] } }
-  validates :home, :exclusion => { :in => lambda { |game| [game.away] } }
-
+  # Required fields
   validates :home, :presence => true
   validates :away, :presence => true
   validates :faceoff_time, :presence => true
 
+  # Cannot be the same teams
+  validates :away, :exclusion => { 
+    :in => lambda { |game| [game.home] },
+    :message => "The away team can't be the same as the home team"
+  }
+  validates :home, :exclusion => { 
+    :in => lambda { |game| [game.away] },
+    :message => "The home team can't be the same as the away team"
+  }
+
+  # Required fields for finished games
   validates :winner, :presence => true, :if => :finished?
   validates :home_score, :presence => true, :if => :finished?
   validates :away_score, :presence => true, :if => :finished?
