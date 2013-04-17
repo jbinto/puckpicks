@@ -1,16 +1,21 @@
 class Game < ActiveRecord::Base
-  # This was tricky. Things that didn't work:
 
-  # 1) Using "home:references" with the rails generator. That just assumes there's a home_table with a home_id.
-  # 2) Using "has_one :home". That assumes the table "home" will have a "game_id" (?????????????)
+  # Starting to see through the Rails magic here. Things I learned:
+  #
+  # 1) Creating a migration or generating a model has nothing to do with associations.
+  # 2) Even if you use foo:references, all that does is create a foo_id on the table.
+  # 3) The relationships do *not* need to be symmetrical. I don't need a "has_many :games"
+  #    on team.
+  # 4) Setting "belongs_to" below just says: "look on this table (Game) for a home_id column,
+  #    and look in Team.id to find it.
 
   belongs_to :home, :class_name => "Team"
   belongs_to :away, :class_name => "Team"
   belongs_to :winner, :class_name => "Team"
 
-  #validate :cannot_be_same_teams
-
+  # Cannot be the same teams
   validates :away, :exclusion => { :in => lambda { |game| [game.home] } }
+  validates :home, :exclusion => { :in => lambda { |game| [game.away] } }
 
   validates :home, :presence => true
   validates :away, :presence => true
