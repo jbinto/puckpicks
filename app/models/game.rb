@@ -25,13 +25,6 @@ class Game < ActiveRecord::Base
   validates :home_score, :presence => true, :if => :finished?
   validates :away_score, :presence => true, :if => :finished?
 
-  def cannot_be_same_teams
-    if home == away
-      errors.add(:away, "can't be same as home")
-      errors.add(:home, "can't be same as away")
-    end
-  end
-
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
   def set_result(opts)
