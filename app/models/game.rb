@@ -7,4 +7,13 @@ class Game < ActiveRecord::Base
   belongs_to :home, :class_name => "Team"
   belongs_to :away, :class_name => "Team"
   belongs_to :winner, :class_name => "Team"
+
+  validate :cannot_be_same_teams
+
+  def cannot_be_same_teams
+    if home == away
+      errors.add(:away, "can't be same as home")
+      errors.add(:home, "can't be same as away")
+    end
+  end
 end

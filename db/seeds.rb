@@ -17,7 +17,7 @@ CHI = Team.create(code: 'CHI', city: 'Chicago', name: 'Blackhawks', logo: 'CHI.p
 CBJ = Team.create(code: 'CBJ', city: 'Columbus', name: 'Blue Jackets', logo: 'CBJ.png')
 DET = Team.create(code: 'DET', city: 'Detroit', name: 'Red Wings', logo: 'DET.png')
 NSH = Team.create(code: 'NSH', city: 'Nashville', name: 'Predators', logo: 'NSH.png')
-STL = Team. create(code: 'STL', city: 'St. Louis', name: 'Blues', logo: 'STL.png')
+STL = Team.create(code: 'STL', city: 'St. Louis', name: 'Blues', logo: 'STL.png')
 NJ = Team.create(code: 'NJ', city: 'New Jersey', name: 'Devils', logo: 'NJ.png')
 NYI = Team.create(code: 'NYI', city: 'New York', name: 'Islanders', logo: 'NYI.png')
 NYR = Team.create(code: 'NYR', city: 'New York', name: 'Rangers', logo: 'NYR.png')
@@ -45,6 +45,7 @@ WSH = Team.create(code: 'WSH', city: 'Washington', name: 'Capitals', logo: 'WSH.
 WPG = Team.create(code: 'WPG', city: 'Winnipeg', name: 'Jets', logo: 'WPG.png')
 
 Time.zone = "America/Toronto"
+
 Game.create(away: FLA, home: NYI, faceoff_time: Time.zone.parse('2013-04-16 19:00'))
 Game.create(away: TOR, home: WSH, faceoff_time: Time.zone.parse('2013-04-16 19:00'))
 Game.create(away: CAR, home: OTT, faceoff_time: Time.zone.parse('2013-04-16 19:30'))
@@ -52,5 +53,9 @@ Game.create(away: NYR, home: PHI, faceoff_time: Time.zone.parse('2013-04-16 20:0
 Game.create(away: TB,  home: WPG, faceoff_time: Time.zone.parse('2013-04-16 20:00'))
 Game.create(away: VAN, home: STL, faceoff_time: Time.zone.parse('2013-04-16 21:30'))
 Game.create(away: LA,  home: SJ,  faceoff_time: Time.zone.parse('2013-04-16 22:30'))
+
+
+g = Game.last
+g.update_attributes(winner: g.home, home_score: 5, away_score: 2)
 
 binding.pry
