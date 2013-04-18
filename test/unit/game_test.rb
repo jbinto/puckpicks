@@ -28,4 +28,10 @@ class GameTest < ActiveSupport::TestCase
     assert game.errors[:winner].count > 0
   end
 
+  test "winning teams score must be greater than losing teams score" do
+    game = FactoryGirl.build(:finished_game, away_score: 5, home_score: 2)    
+    refute game.valid?
+    assert game.errors[:winner].count > 0
+  end
+
 end

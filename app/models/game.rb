@@ -39,6 +39,9 @@ class Game < ActiveRecord::Base
     :message => "The winning team must be either the home or away team"
   }
 
+  # Winning team must have a greater score than the losing team.
+  validate :winner_has_greater_score, :if => :finished?
+
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
   def set_result(opts)
@@ -46,5 +49,14 @@ class Game < ActiveRecord::Base
     self.home_score = opts[:home_score]
     self.away_score = opts[:away_score]
     self.finished = true
+  end
+
+  def winner_has_greater_score
+    message = "Winning team must have a greater score than losing team"
+    if winner == home && away_score > home_score
+      errors.add(:winner, message)
+    elsif winner == away && home_score > away_score
+      errors.add(:winner, message)
+    end
   end
 end
