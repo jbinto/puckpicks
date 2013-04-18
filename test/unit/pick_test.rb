@@ -55,4 +55,45 @@ class PickTest < ActiveSupport::TestCase
     assert pick2.valid?
   end
 
+  test "when picked team wins by one, impact is +1" do
+    game = FactoryGirl.build(:game)
+    pick = FactoryGirl.build(:pick, :game => game)
+
+    game.set_result(winner: game.home, home_score: 2, away_score: 1)
+
+    # We could make this an after_filter on game
+    # Assuming game has picks:
+    # if finished? picks.each { |p| p.grade }
+
+    pick.decide
+    assert_equal 1, pick.impact
+  end
+
+  test "when +1 picked team loses, user loses 1 point" do
+    game = FactoryGirl.build(:game)
+    pick = FactoryGirl.build(:pick, :game => game)
+
+    game.set_result(winner: game.away, home_score: 2, away_score: 3)
+    pick.decide
+    assert_equal -1, pick.impact
+  end
+
+  test "when +2 picked team loses, user loses 2 points" do
+    game = FactoryGirl.build(:game)
+    pick = FactoryGirl.build(:pick, :game => game, :spread_wager => 2)
+
+    game.set_result(winner: game.away, home_score: 2, away_score: 3)
+    pick.decide
+    assert_equal -2, pick.impact
+  end
+
+  test "when +2 picked team doesn't cover spread, user loses 2 points" do
+    game = FactoryGirl.build(:game)
+    pick = FactoryGirl.build(:pick, :game => game, :spread_wager => 2)
+
+    game.set_result(winner: game.home, home_score: 3, away_score: 2)
+    pick.decide
+    assert_equal -2, pick.impact
+  end
+
 end

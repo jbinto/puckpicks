@@ -21,4 +21,31 @@ class Pick < ActiveRecord::Base
   # and http://stackoverflow.com/a/7032711/19779 for more.
   validates_uniqueness_of :game_id, :scope => :user_id,
     message: "You can only bet on this game once."
+
+
+  def decide
+    return false if decided?
+    return false unless game.finished?
+
+    if spread_covered
+      self.impact = self.spread_wager
+    else
+      self.impact = 0 - self.spread_wager
+    end
+
+    true
+  end
+
+  def spread_covered
+    return false unless game.winner == team
+    return true if spread_wager == 1
+
+    # spread_wager was >1, see if the spread was covered
+    spread = game.winner_score - game.loser_score
+    return spread >= spread_wager
+  end
+
+  def decided?
+    impact != 0
+  end
 end
