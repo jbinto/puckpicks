@@ -5,7 +5,7 @@
 / note: http://www.foragoodstrftime.com/ was a big help here
 .span4
   .well.well-small
-    %h4= "Games for #{Time.zone.today.strftime('%A, %b %d')}"
+    %h4= "Games for #{today_text}"
     - @today_games.each do |game|
       %li
         - if logged_in?
@@ -25,4 +25,4 @@
           at
           %strong= game.home.code
         %p
-          = game.faceoff_time.localtime.strftime('%l:%M %p')
+          = time_only(game.faceoff_time)
