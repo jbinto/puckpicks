@@ -62,10 +62,17 @@ class Game < ActiveRecord::Base
   end
 
   def winner_has_greater_score
+    # note: Other validations ensure that if a game is finished, there
+    # must be a score. But this validation will also be called, and throw
+    # a nil exception. To make testing possible we need this compromise.
+
+    # Not the prettiest way to do it, but I really want to be sure that
+    # a "finished?" game has certain attributes.
+
+    return unless finished? && winner_score && loser_score
+
     message = "Winning team must have a greater score than losing team"
-    if winner == home && away_score > home_score
-      errors.add(:winner, message)
-    elsif winner == away && home_score > away_score
+    if winner_score <= loser_score
       errors.add(:winner, message)
     end
   end
