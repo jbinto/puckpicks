@@ -42,6 +42,9 @@ class Game < ActiveRecord::Base
   # Winning team must have a greater score than the losing team.
   validate :winner_has_greater_score, :if => :finished?
 
+  # Games for "today"
+  scope :today, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Date.today.beginning_of_day, Date.today.end_of_day]
+
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
   def set_result(opts)
@@ -61,6 +64,11 @@ class Game < ActiveRecord::Base
     home != winner ? home_score : away_score
   end
 
+  def friendly_text
+    "#{faceoff_time}: #{away.name} at #{home.name}"
+  end
+
+  protected
   def winner_has_greater_score
     # note: Other validations ensure that if a game is finished, there
     # must be a score. But this validation will also be called, and throw

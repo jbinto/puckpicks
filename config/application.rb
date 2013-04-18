@@ -64,5 +64,8 @@ module Puckpicks
       g.test_framework :test_unit, :fixture => false
       g.fixture_replacement :factory_girl, :dir => "test/factories"
     end
+
+    # Set time zone
+    config.time_zone = 'America/Toronto'
   end
 end
