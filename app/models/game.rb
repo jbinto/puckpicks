@@ -51,6 +51,16 @@ class Game < ActiveRecord::Base
     self.finished = true
   end
 
+  def winner_score
+    return nil unless finished?
+    home == winner ? home_score : away_score
+  end
+
+  def loser_score
+    return nil unless finished?
+    home != winner ? home_score : away_score
+  end
+
   def winner_has_greater_score
     message = "Winning team must have a greater score than losing team"
     if winner == home && away_score > home_score

@@ -34,4 +34,16 @@ class GameTest < ActiveSupport::TestCase
     assert game.errors[:winner].count > 0
   end
 
+  test "winner_score, loser_score are nil when not finished" do
+    game = FactoryGirl.build(:game)
+    assert_nil game.winner_score
+    assert_nil game.loser_score
+  end
+
+  test "winner_score, loser_score" do
+    game = FactoryGirl.build(:finished_game, home_score: 10, away_score: 0)
+    assert_equal 10, game.winner_score
+    assert_equal 0, game.loser_score
+  end
+
 end
