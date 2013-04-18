@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = login(params[:username], params[:password])
+    user = login(params[:login][:username], params[:login][:password])
     if user
       redirect_back_or_to root_url, :notice => "Welcome back #{user.username}. Get your picks in now!"
     else
