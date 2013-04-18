@@ -8,6 +8,8 @@ Puckpicks::Application.routes.draw do
   get "register" => 'users#new', as: "register"
   get "login" => 'sessions#new', as: "login"
 
-
+  namespace :my do
+    resources :picks, only: ['create']
+  end
 
 end
