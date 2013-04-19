@@ -9,7 +9,7 @@ Puckpicks::Application.routes.draw do
   get "login" => 'sessions#new', as: "login"
 
   namespace :my do
-    resources :picks, only: ['create']
+    resources :picks, only: ['create', 'index']
   end
 
 end

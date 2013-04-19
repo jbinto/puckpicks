@@ -26,6 +26,9 @@ class Pick < ActiveRecord::Base
   # There may be bugs lurking here.
   validate :game_must_be_in_future, :on => :create
 
+  scope :decided, where("impact != 0")
+  scope :pending, where("impact == 0")
+
   def decide
     return false if decided?
     return false unless game.finished?

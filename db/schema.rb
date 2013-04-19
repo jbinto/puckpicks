@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416214245) do
+ActiveRecord::Schema.define(:version => 20130419034000) do
 
   create_table "games", :force => true do |t|
     t.datetime "faceoff_time",                    :null => false
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(:version => 20130416214245) do
     t.integer  "team_id"
     t.integer  "user_id"
     t.integer  "spread_wager"
-    t.integer  "impact"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "impact",       :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "picks", ["game_id"], :name => "index_picks_on_game_id"
