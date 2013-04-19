@@ -36,3 +36,8 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 * User's scores (will be calculated on the fly for now)
 * Leaderboards
 
+### Lessons learned
+
+* You need to be very cognizant of time zones in Rails. It seems best practice to always use methods on `Time.zone` (e.g. `now`, `today`, `parse`) rather than on the Rails built-in methods. 
+* `FactoryGirl.build` is faster than `FactoryGirl.create`, and unit tests *shouldn't* touch the database, but in some cases that can't be avoided. Case in point: testing uniqueness validations. Maybe there's a better, purer, more OO way, but this seems a good balance of pragmatism and speed.
+* I find myself hamstrung when working with Bootstrap. I'm no CSS expert, but I can't seem to do the simplest things in Bootstrap.
