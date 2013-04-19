@@ -1,4 +1,6 @@
 class My::PicksController < ApplicationController
+  before_filter :require_login
+
   def create
     p = current_user.picks.build
     p.game = Game.find(params[:pick][:game_id])
@@ -10,5 +12,9 @@ class My::PicksController < ApplicationController
     else
       redirect_to root_url, alert: "Something went wrong with your pick (#{p.errors.full_messages}). Try again."
     end
+  end
+
+  def index
+    
   end
 end
