@@ -46,4 +46,14 @@ class GameTest < ActiveSupport::TestCase
     assert_equal 0, game.loser_score
   end
 
+  test "after faceoff time, game is started" do
+    game = FactoryGirl.create(:game, :faceoff_time => 2.hours.ago)
+    assert game.started?
+  end
+
+  test "before faceoff time, game is not started" do
+    game = FactoryGirl.create(:game, :faceoff_time => 2.hours.from_now)
+    refute game.started?
+  end
+
 end

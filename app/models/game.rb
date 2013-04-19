@@ -68,6 +68,10 @@ class Game < ActiveRecord::Base
     "#{faceoff_time}: #{away.name} at #{home.name}"
   end
 
+  def started?
+    Time.zone.now >= faceoff_time
+  end
+
   protected
   def winner_has_greater_score
     # note: Other validations ensure that if a game is finished, there
