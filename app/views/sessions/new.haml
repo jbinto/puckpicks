@@ -11,7 +11,9 @@
     %fieldset
       %legend Enter your credentials
       = f.input :username
-      = f.input :password
+      = f.input :password      
       .controls
         = f.button :submit, :value => "Log in", :class => "btn btn-success"
-
+        %p
+          %small
+            = link_to "Or sign up...", register_path
