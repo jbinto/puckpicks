@@ -10,11 +10,7 @@
       %li
         - if logged_in?
           .pull-right
-            = form_for [:my, @pick] do |f|
-              = f.hidden_field :game_id, :value => game.id
-              = f.hidden_field :team_id, :value => game.home.id
-              = f.hidden_field :spread_wager, :value => 1
-              = f.submit "#{game.home.code} +1"
+            = render 'shared/pick_buttons', game: game
 
         - else
           .pull-right

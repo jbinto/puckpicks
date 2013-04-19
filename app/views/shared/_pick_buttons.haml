@@ -1,0 +1,6 @@
+.btn-group
+  = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1, css_class: "btn-success"
+  = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2, css_class: "btn-success"
+.btn-group
+  = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1, css_class: "btn-info"
+  = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2, css_class: "btn-info" 
