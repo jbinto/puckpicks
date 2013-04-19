@@ -38,7 +38,7 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 
 ### Lessons learned
 
-* You need to be very cognizant of time zones in Rails. It seems best practice to always use methods on `Time.zone` (e.g. `now`, `today`, `parse`) rather than on the Rails built-in methods. I spent a few hours chasing down a bug that had 9PM and 10PM games sorted *before* 7PM and 8PM games (long story short, it boiled down to before or after midnight UTC).
+* You need to be very cognizant of time zones in Rails. It seems best practice to always use methods on `Time.zone` (e.g. `now`, `today`, `parse`) rather than on the Ruby built-in methods. I spent a few hours chasing down a bug that had 9PM and 10PM games sorted *before* 7PM and 8PM games (long story short, it boiled down to before or after midnight UTC).
 
 * `FactoryGirl.build` is faster than `FactoryGirl.create`, and unit tests *shouldn't* touch the database, but in some cases that "can't" be avoided. Case in point: testing uniqueness validations. Maybe there's a better, purer, more OO way, but this seems a good balance of pragmatism and speed.
 
