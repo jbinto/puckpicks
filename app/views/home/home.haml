@@ -3,22 +3,29 @@
 %ul
 
 / note: http://www.foragoodstrftime.com/ was a big help here
-.span4
+.span6
   .well.well-small
     %h4= "Games for #{today_text}"
-    - @today_games.each do |game|
-      %li
-        - if logged_in?
-          .pull-right
-            = render 'shared/pick_buttons', game: game
-
-        - else
-          .pull-right
-            %em Log in to make your pick.
-
-        %p
-          %strong= game.away.code
-          at
-          %strong= game.home.code
-        %p
-          = time_only(game.faceoff_time)
+    %table.table-bordered.table-striped
+      - @today_games.each do |game|
+        %tr
+          %td
+            - if logged_in?
+              .btn-group
+                = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1, css_class: "btn-success"
+                = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2, css_class: "btn-success" 
+            - else
+              = link_to "Log in", login_path, class: "btn btn-mini"
+          %td
+            %p
+              %strong= game.away.code
+              at
+              %strong= game.home.code
+              ="(#{time_only(game.faceoff_time)})"
+          %td
+            - if logged_in?
+              .btn-group
+                = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1, css_class: "btn-info"
+                = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2, css_class: "btn-info" 
+            - else
+              = link_to "Log in", login_path, class: "btn btn-mini"

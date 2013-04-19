@@ -4,10 +4,10 @@ module ApplicationHelper
     end
 
     def date_only(date)
-      date.strftime('%A, %b %d')
+      date.strftime('%A, %b %d').strip
     end
 
     def time_only(date)
-      date.localtime.strftime('%l:%M %p')
+      date.localtime.strftime('%l:%M %p').strip
     end
 end
