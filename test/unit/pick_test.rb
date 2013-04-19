@@ -96,4 +96,12 @@ class PickTest < ActiveSupport::TestCase
     assert_equal -2, pick.impact
   end
 
+  test "cannot make a pick when a game is started" do
+    game = FactoryGirl.build(:game, :faceoff_time => 2.hours.ago)
+    pick = FactoryGirl.build(:pick, :game => game)
+
+    refute pick.valid?
+    assert pick.errors[:game].count > 0
+  end
+
 end

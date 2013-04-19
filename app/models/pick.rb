@@ -22,6 +22,9 @@ class Pick < ActiveRecord::Base
   validates_uniqueness_of :game_id, :scope => :user_id,
     message: "You can only bet on this game once."
 
+  # note XXX: even if I drop the `on create`, all of our tests pass. 
+  # There may be bugs lurking here.
+  validate :game_must_be_in_future, :on => :create
 
   def decide
     return false if decided?
@@ -47,5 +50,14 @@ class Pick < ActiveRecord::Base
 
   def decided?
     impact != 0
+  end
+
+  protected
+  def game_must_be_in_future
+    # note: Will this cause problems when we need to update the pick for impact?
+    # The tests seem to pass, but this doesn't really make sense.
+    if game.started?
+      errors.add(:game, "must not have already started")
+    end
   end
 end
