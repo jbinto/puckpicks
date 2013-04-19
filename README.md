@@ -38,6 +38,12 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 
 ### Lessons learned
 
-* You need to be very cognizant of time zones in Rails. It seems best practice to always use methods on `Time.zone` (e.g. `now`, `today`, `parse`) rather than on the Rails built-in methods. 
-* `FactoryGirl.build` is faster than `FactoryGirl.create`, and unit tests *shouldn't* touch the database, but in some cases that can't be avoided. Case in point: testing uniqueness validations. Maybe there's a better, purer, more OO way, but this seems a good balance of pragmatism and speed.
-* I find myself hamstrung when working with Bootstrap. I'm no CSS expert, but I can't seem to do the simplest things in Bootstrap.
+* You need to be very cognizant of time zones in Rails. It seems best practice to always use methods on `Time.zone` (e.g. `now`, `today`, `parse`) rather than on the Rails built-in methods. I spent a few hours chasing down a bug that had 9PM and 10PM games sorted *before* 7PM and 8PM games (long story short, it boiled down to before or after midnight UTC).
+
+* `FactoryGirl.build` is faster than `FactoryGirl.create`, and unit tests *shouldn't* touch the database, but in some cases that "can't" be avoided. Case in point: testing uniqueness validations. Maybe there's a better, purer, more OO way, but this seems a good balance of pragmatism and speed.
+
+* I find myself hamstrung when working with Bootstrap. I'm no CSS expert, but I can't seem to do the simplest things in Bootstrap compared to vanilla CSS. I find myself longing for Visual Basic style UI designers with dead easy snap-to-edge alignments. 
+
+* I don't understand the magic behind ActiveRecord nearly as much as I thought I did. More often than not, the underlying database (Postgres) leaks through. 
+ * For instance, adding a `belongs_to :home, :class_name => Team` declaration on `Game` will allow me to say something like `game.home.city` (given a `home_id` column on the table), but this magic doesn't extend to queries: `Game.where(:home => TOR)` just blindly looks for a `game` column without any ActiveRecord smarts.
+ * Same thing goes on the uniqueness validations: ActiveRecord doesn't seem to be smart enough to think in terms of `home` and `away`, rather you have to specify `home_id`.
