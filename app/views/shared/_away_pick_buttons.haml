@@ -1,0 +1,9 @@
+- if logged_in?
+  - if game.started?
+    %em Betting closed.
+  - else
+    .btn-group
+      = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1, css_class: "btn-info"
+      = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2, css_class: "btn-info" 
+- else
+  = link_to "Log in", login_path, class: "btn btn-mini"
