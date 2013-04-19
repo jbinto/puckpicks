@@ -5,7 +5,7 @@
 / note: http://www.foragoodstrftime.com/ was a big help here
 .span6
   .well.well-small
-    %h4= "Games for #{today_text}"
+    %h4= "Games for #{date_only(Now.now)}"
     %table.table-bordered.table-striped
       - @today_games.each do |game|
         %tr

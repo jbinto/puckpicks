@@ -1,3 +1,5 @@
+require 'now'
+
 class Game < ActiveRecord::Base
 
   # Starting to see through the Rails magic here. Things I learned:
@@ -43,7 +45,7 @@ class Game < ActiveRecord::Base
   validate :winner_has_greater_score, :if => :finished?
 
   # Games for "today"
-  scope :today, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Date.today.beginning_of_day, Date.today.end_of_day]
+  scope :today, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Now.today.beginning_of_day, Now.today.end_of_day]
 
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
@@ -69,7 +71,7 @@ class Game < ActiveRecord::Base
   end
 
   def started?
-    Time.zone.now >= faceoff_time
+    Now.now >= faceoff_time
   end
 
   protected
