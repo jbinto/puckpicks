@@ -1,4 +1,7 @@
 module ApplicationHelper
+    # XXX hack
+    require 'now'  
+
     def date_only(date)
       date.strftime('%A, %b %d').strip
     end

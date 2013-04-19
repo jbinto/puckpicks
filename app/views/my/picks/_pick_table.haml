@@ -1,0 +1,19 @@
+- if picks.count == 0
+  None.
+- else
+  %table.table.table-striped.table-hover
+    %tr
+      %th Date (game)
+      %th Date (pick)
+      %th Home
+      %th Away
+      %th 
+        %strong Your Pick
+    - picks.each do |pick|
+      %tr
+        %td= date_and_time(pick.game.faceoff_time)
+        %td= date_and_time(pick.created_at)
+        %td= pick.game.home.full_name
+        %td= pick.game.away.full_name
+        %td
+          %strong= "#{pick.team.full_name} by #{pick.spread_wager}"

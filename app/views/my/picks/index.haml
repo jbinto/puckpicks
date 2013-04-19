@@ -1,0 +1,9 @@
+%h2 My Picks
+
+.well.well-small
+  %h3 Pending picks
+  = render 'pick_table', picks: @pending
+  
+.well.well-small
+  %h3 Decided picks
+  = render 'pick_table', picks: @decided

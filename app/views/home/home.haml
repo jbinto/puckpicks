@@ -6,7 +6,7 @@
 .span6
   .well.well-small
     %h4= "Games for #{date_only(Now.now)}"
-    %table.table-bordered.table-striped
+    %table.table.table-bordered.table-striped
       - @today_games.each do |game|
         %tr
           %td

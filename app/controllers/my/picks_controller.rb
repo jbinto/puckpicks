@@ -15,6 +15,7 @@ class My::PicksController < ApplicationController
   end
 
   def index
-    
+    @decided = current_user.picks.decided
+    @pending = current_user.picks.pending
   end
 end
