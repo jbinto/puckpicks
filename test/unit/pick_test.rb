@@ -104,4 +104,11 @@ class PickTest < ActiveSupport::TestCase
     assert pick.errors[:game].count > 0
   end
 
+  test "pick shows the correct text" do
+    team = FactoryGirl.build(:team, code: "TOR")
+    pick = FactoryGirl.build(:pick, team: team, spread_wager: 2)
+
+    assert_equal "TOR +2", pick.text
+  end
+
 end

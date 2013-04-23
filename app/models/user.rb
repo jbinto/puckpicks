@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
 
   has_many :picks
+
+  def pick_for(game)
+    picks.where(:game_id => game.id).first
+  end
 end

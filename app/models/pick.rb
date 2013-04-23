@@ -55,6 +55,10 @@ class Pick < ActiveRecord::Base
     impact != 0
   end
 
+  def text
+    "#{team.code} +#{spread_wager}"
+  end
+
   protected
   def game_must_be_in_future
     # note: Will this cause problems when we need to update the pick for impact?
