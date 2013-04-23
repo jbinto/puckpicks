@@ -12,4 +12,8 @@ Puckpicks::Application.routes.draw do
     resources :picks, only: ['create', 'index']
   end
 
+  namespace :admin do
+    resources :games
+  end
+
 end

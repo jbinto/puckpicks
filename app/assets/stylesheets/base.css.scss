@@ -5,3 +5,25 @@
 span.home {
   margin-right: 10px;
 }
+
+.admin, .navbar .nav > li > a.admin {
+  color: red;
+}
+
+form.edit_game {
+  margin: 0;
+}
+
+form.edit_game input[type="text"] {
+  width: 25px;
+}
+
+form.edit_game label {
+  display: inline;
+}
+
+form.edit_game input[type="submit"] {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-mini;
+}

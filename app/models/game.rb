@@ -46,6 +46,7 @@ class Game < ActiveRecord::Base
 
   # Games for "today"
   scope :today, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Now.today.beginning_of_day, Now.today.end_of_day]
+  scope :past_week, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Now.today-7.days, Now.today.end_of_day]
 
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
