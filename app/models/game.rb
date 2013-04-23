@@ -52,9 +52,9 @@ class Game < ActiveRecord::Base
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
   def set_result(opts)
-    self.winner = opts[:winner]
     self.home_score = opts[:home_score]
     self.away_score = opts[:away_score]
+    self.winner = self.home_score > self.away_score ? self.home : self.away
     self.finished = true
   end
 
@@ -74,6 +74,11 @@ class Game < ActiveRecord::Base
 
   def started?
     Now.now >= faceoff_time
+  end
+
+  def boxscore
+    nil unless finished?
+    "#{away.code} #{away_score} - #{home.code} #{home_score}"
   end
 
   protected

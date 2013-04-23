@@ -56,4 +56,11 @@ class GameTest < ActiveSupport::TestCase
     refute game.started?
   end
 
+  test "boxscore can be retrieved when game is finished" do
+    TOR = FactoryGirl.create(:team, :code => "TOR")
+    OTT = FactoryGirl.create(:team, :code => "OTT")
+    game = FactoryGirl.create(:finished_game, :home => TOR, :away => OTT, :home_score => 5, :away_score => 2)
+    assert_equal "OTT 2 - TOR 5", game.boxscore
+  end
+
 end

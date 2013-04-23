@@ -16,10 +16,13 @@ form.edit_game {
 
 form.edit_game input[type="text"] {
   width: 25px;
+  float: left;
 }
 
 form.edit_game label {
-  display: inline;
+  float: left;
+  width: 50px;
+  margin-left: 10px;
 }
 
 form.edit_game input[type="submit"] {
