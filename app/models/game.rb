@@ -44,9 +44,10 @@ class Game < ActiveRecord::Base
   # Winning team must have a greater score than the losing team.
   validate :winner_has_greater_score, :if => :finished?
 
-  # Games for "today"
-  scope :today, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Now.today.beginning_of_day, Now.today.end_of_day]
-  scope :past_week, :conditions => ['faceoff_time >= ? AND faceoff_time <= ?', Now.today-7.days, Now.today.end_of_day]
+  # Date scopes
+  scope :since, lambda { |time| where('faceoff_time >= ? AND faceoff_time <= ?', time, Now.today.end_of_day) }
+  scope :today, since(Now.today.beginning_of_day)
+  scope :past_week, since(Now.today - 7.days)
 
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
