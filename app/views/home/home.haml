@@ -3,19 +3,23 @@
 %ul
 
 / note: http://www.foragoodstrftime.com/ was a big help here
-.span6
-  .well.well-small
-    %h4= "Games for #{date_only(Now.now)}"
-    %table.table.table-bordered.table-striped
-      - @today_games.each do |game|
-        %tr
-          %td
-            = render 'shared/home_pick_buttons', game: game
-          %td
-            %p
-              %strong= game.away.code
-              at
-              %strong= game.home.code
-              ="(#{time_only(game.faceoff_time)})"
-          %td
-            = render 'shared/away_pick_buttons', game: game
+%h4= "Games for #{date_only(Now.now)}"
+.row
+- @today_games.each do |game|
+  .span2.game
+    %p
+      %strong= game.away.code
+      at
+      %strong= game.home.code
+      ="(#{time_only(game.faceoff_time)})"
+    - if game.started?
+      %em Betting closed.
+    - elsif logged_in? && (pick = current_user.pick_for(game)).present?
+      %em= "You picked #{pick.text}."
+    - else
+      .pick-buttons
+        = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1
+        = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2
+      .pick-buttons
+        = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1
+        = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2

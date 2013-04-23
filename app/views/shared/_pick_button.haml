@@ -2,4 +2,8 @@
   = f.hidden_field :game_id, :value => game.id
   = f.hidden_field :team_id, :value => team.id
   = f.hidden_field :spread_wager, :value => spread_wager
-  = f.submit "#{team.code} +#{spread_wager}", class: "btn btn-mini #{css_class}"
+  - if logged_in?
+    - css_class = (team == game.home) ? "home" : "away"
+    - css_class += (spread_wager == 1) ? "by1" : "by2"
+
+  = f.submit "#{team.code} +#{spread_wager}", class: "btn #{css_class}"
