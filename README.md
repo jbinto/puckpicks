@@ -27,14 +27,23 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 * Rails models for Pick and Game, with some decent, well-tested validations & sanity checks
 * Grading/deciding of picks based on a game's result
 * User sign up and authentication with Sorcery
-* Ability to bet on today's games through the Rails interface (in progress)
+* Ability to bet on today's games through the Rails interface
+* Don't let user bet on a game twice
+* Ability to enter game results manually through the web interface
 
 ### Not completed, in priority order
 
-* Ability to enter game results manually through the web interface
-* Automated game result updating through ESPN API, scraping NHL.com or similar
+* On picks page, split into groups: picked, open, closed
 * User's scores (will be calculated on the fly for now)
 * Leaderboards
+* Allow user to withdraw their bet (until game starts)
+* Improve CSS/Bootstrap of the picks page
+* AJAXify the admin score updater
+* AJAXify the picks page
+* Calendar-style navigation: allow user to click "next day"
+* Show more than one day
+* Automated game result updating through ESPN API, scraping NHL.com or similar
+* JSON API to allow users to automate their picks
 
 ### Lessons learned
 
