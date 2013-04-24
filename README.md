@@ -56,3 +56,14 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 * I don't understand the magic behind ActiveRecord nearly as much as I thought I did. More often than not, the underlying database (Postgres) leaks through. 
  * For instance, adding a `belongs_to :home, :class_name => Team` declaration on `Game` will allow me to say something like `game.home.city` (given a `home_id` column on the table), but this magic doesn't extend to queries: `Game.where(:home => TOR)` just blindly looks for a `game` column without any ActiveRecord smarts.
  * Same thing goes on the uniqueness validations: ActiveRecord doesn't seem to be smart enough to think in terms of `home` and `away`, rather you have to specify `home_id`.
+
+
+ ### Questions to be answered
+
+* My models are really getting big. What's the conventional way to organize them? e.g. order of associations, filters, scopes, helper methods, validations.
+* Was it worth creating all of this validation, or am I bringing my old static-language habits into Ruby?
+* How do I log warning-level errors? For example, I don't want to raise an exception if you call Pick#decide for an unfinished or already decided game. But I do want to know my code is doing this.
+* I need offline docs for Rails for when I'm on the subway. Even when online, grepping official docs is a better strategy than wildly Googling things. Does such a thing exist?
+* On my models, I have a lot of mutator methods that don't save the record. For example, `Pick#decide`, `Game#decide_picks`. Is this conventional? Should I make them bang-methods (`decide!`) and have them save the record? Should they return `true`/`false` in this case or raise exceptions?
+* Is the whole Now.now concept a bad idea? Do I *really* need to override the time like this? I'm not even using it for unit testing; I'm using it for manual testing. Could monkey patching be a better idea?
+* I have `Game#set_result`. This takes a `:home_score` and an `:away_score`. This seems unnecessary. Can't I just have a `process_result` after_update filter that handles this?

@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "email and username must be unique" do
     user1 = FactoryGirl.create(:user)
-    user2 = FactoryGirl.build(:user)
+    user2 = FactoryGirl.build(:user, :username => user1.username)
 
     refute user2.save
 

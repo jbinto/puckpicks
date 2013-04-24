@@ -33,6 +33,8 @@ class Pick < ActiveRecord::Base
     return false if decided?
     return false unless game.finished?
 
+    logger.info "Deciding pick #{self.id} ..."
+
     if spread_covered
       self.impact = self.spread_wager
     else

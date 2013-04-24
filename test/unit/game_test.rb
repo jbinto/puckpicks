@@ -63,4 +63,25 @@ class GameTest < ActiveSupport::TestCase
     assert_equal "OTT 2 - TOR 5", game.boxscore
   end
 
+  test "associated picks can be decided" do
+    # XXX: thinking about Sandi Metz's book here, I realize my objective here isn't to re-test
+    # the logic already tested in Pick, but to ensure that 
+
+    game = FactoryGirl.create(:game)
+    picks = [
+      FactoryGirl.create(:pick, :game => game, :team => game.home, :spread_wager => 1),
+      FactoryGirl.create(:pick, :game => game, :team => game.home, :spread_wager => 2),
+      FactoryGirl.create(:pick, :game => game, :team => game.away, :spread_wager => 1)
+    ]
+
+    game.set_result(:home_score => 5, :away_score => 2)
+    game.save
+
+    # Picks should be decided
+    picks.each { |p| p.reload }
+    decisions = picks.map { |p| p.decided? }
+    assert_equal [true, true, true], decisions
+
+  end
+
 end

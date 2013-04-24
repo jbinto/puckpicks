@@ -15,6 +15,8 @@ class Game < ActiveRecord::Base
   belongs_to :away, :class_name => "Team"
   belongs_to :winner, :class_name => "Team"
 
+  has_many :picks
+
   # Required fields
   validates :home, :presence => true
   validates :away, :presence => true
@@ -48,6 +50,8 @@ class Game < ActiveRecord::Base
   scope :since, lambda { |time| where('faceoff_time >= ? AND faceoff_time <= ?', time, Now.today.end_of_day) }
   scope :today, since(Now.today.beginning_of_day)
   scope :past_week, since(Now.today - 7.days)
+
+  after_update :decide_picks
 
   # Thought: Rather than using attr_accessible, we can use a 
   # special method here not accessible to the general public?
@@ -95,6 +99,17 @@ class Game < ActiveRecord::Base
     message = "Winning team must have a greater score than losing team"
     if winner_score <= loser_score
       errors.add(:winner, message)
+    end
+  end
+
+  def decide_picks
+    return unless finished?
+    logger.info "Deciding all picks for game #{self.id} ..."
+
+    picks.each do |pick|
+      next if pick.decided?
+      pick.decide
+      pick.save!      # We want an exception to be thrown if something goes wrong.
     end
   end
 end
