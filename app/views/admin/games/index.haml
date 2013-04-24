@@ -10,17 +10,19 @@
         %th Game# 
         %th Date
         %th Away
-        %th Home      
+        %th Home  
+        %th Picks    
         %th Result
       - @games.each do |game|
-        - if game.started?        
-          %tr{class: game.finished? ? "success" : ""}
+        - if game.started?
+          - css_class = "error" if game.picks.count > 0 
+          - css_class = "success" if game.finished?
+          %tr{class: css_class}
             %td= "##{game.id}"
             %td= date_and_time(game.faceoff_time)
-            %td
-              = game.away.full_name
-            %td
-              = game.home.full_name
+            %td= game.away.full_name
+            %td= game.home.full_name
+            %td= game.picks.count
             %td
               = form_for [:admin, game] do |f|
                 = f.label :away_score, game.away.code
