@@ -50,3 +50,13 @@ input.homeby1, input.homeby2 {
 input.awayby1, input.awayby2 {
   @extend .btn-info;
 }
+
+span.win {
+  @extend .badge;
+  @extend .badge-success;
+}
+
+span.loss {
+  @extend .badge;
+  @extend .badge-important;
+}

@@ -2,8 +2,8 @@
 
 .well.well-small
   %h3 Pending picks
-  = render 'pick_table', picks: @pending
+  = render 'pick_table', picks: @pending, show_result: false
   
 .well.well-small
   %h3 Decided picks
-  = render 'pick_table', picks: @decided
+  = render 'pick_table', picks: @decided, show_result: true
