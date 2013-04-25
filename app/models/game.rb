@@ -48,8 +48,8 @@ class Game < ActiveRecord::Base
 
   # Date scopes
   scope :since, lambda { |time| where('faceoff_time >= ? AND faceoff_time <= ?', time, Now.today.end_of_day) }
-  scope :today, since(Now.today.beginning_of_day)
-  scope :past_week, since(Now.today - 7.days)
+  scope :today, lambda { since(Now.today.beginning_of_day) }
+  scope :past_week, lambda { since(Now.today - 7.days) }
 
   after_update :decide_picks
 
