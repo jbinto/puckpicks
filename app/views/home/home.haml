@@ -30,7 +30,8 @@
       ="(#{time_only(game.faceoff_time)})"
     - if game.started?
       %em Betting closed.
-    - elsif logged_in? && (pick = @my_picks.first { |pick| pick.game == game}).present?
+    - elsif logged_in? && (pick = @my_picks.find { |pick| pick.game == game}).present?
+      - # The code above is too complex for a view, but I'm not sure how to deal with it as a helper.
       %em= "You picked #{pick.text}."
     - else
       .pick-buttons
