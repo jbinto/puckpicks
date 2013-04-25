@@ -52,8 +52,8 @@ sched = sched.each_slice(5).to_a
 
 sched.each do |game|
   date = game[0]
-  home = game[1].strip
-  away = game[2].strip
+  away = game[1].strip
+  home = game[2].strip
   time = game[3]
   network = game[4]
 
