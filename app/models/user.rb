@@ -9,10 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :picks
 
-  def pick_for(game)
-    picks.where(:game_id => game.id).first
-  end
-
   def score_since(since)
     picks.since(since).sum(:impact)
   end
