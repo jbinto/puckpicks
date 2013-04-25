@@ -60,3 +60,19 @@ span.loss {
   @extend .badge;
   @extend .badge-important;
 }
+
+.score h4 {
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.score {
+  font-size: 100px;
+  line-height: 100px;
+  text-align: center;
+  border-bottom: 2px dashed #dedede;
+}
+
+.good { color: #b94a48;  }
+.bad { color: #468847; }

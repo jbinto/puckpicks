@@ -13,3 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+$(function() {
+
+  /* Set the colors of the score on the front page */
+  $(".score .num").each(function() {
+    var text = $(this).text();
+    var num = parseInt(text, 10);
+    if (num > 0) $(this).addClass("good");
+    if (num < 0) $(this).addClass("bad");
+  });
+
+});

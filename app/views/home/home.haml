@@ -3,6 +3,22 @@
 %ul
 
 / note: http://www.foragoodstrftime.com/ was a big help here
+- if logged_in?
+  %h4 Your score
+  .row
+    .span3.score
+      %h4 Past 24 hours
+      .num= current_user.score_since(24.hours.ago)
+    .span3.score
+      %h4 Past 7 days
+      .num= current_user.score_since(7.days.ago)
+    .span3.score
+      %h4 Past 30 days
+      .num= current_user.score_since(30.days.ago)
+    .span3.score
+      %h4 All time
+      .num= current_user.score
+
 %h4= "Games for #{date_only(Now.now)}"
 .row
 - @today_games.each do |game|
