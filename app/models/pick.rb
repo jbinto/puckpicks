@@ -1,3 +1,5 @@
+require 'now'
+
 class Pick < ActiveRecord::Base
   belongs_to :game
   belongs_to :team
@@ -28,6 +30,9 @@ class Pick < ActiveRecord::Base
 
   scope :decided, :conditions => ["impact != '0'"]
   scope :pending, where(:impact => 0)
+
+  scope :between, lambda { |start, finish| joins(:game).where('games.faceoff_time >= ? AND games.faceoff_time <= ?', start, finish) }
+  scope :since, lambda { |start| between(start, Now.now) }
 
   def decide
     return false if decided?

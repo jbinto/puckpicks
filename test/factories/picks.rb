@@ -7,5 +7,10 @@ FactoryGirl.define do
     user { FactoryGirl.build(:user) }
     spread_wager 1
     impact 0
+
+    factory :decided_pick do
+      game { FactoryGirl.build(:finished_game) }
+      impact 1
+    end
   end
 end
