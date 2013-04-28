@@ -1,0 +1,14 @@
+.row
+  .large-12.columns
+
+    / Desktop version
+    .hide-for-small
+      .featured{data: { orbit: true }}
+        = image_tag "banner1.jpg"
+        = image_tag "banner2.jpg"
+
+  / why is this nested inside another row? (Lifted straight from Foundation layout HTML examples)
+  .row
+    .small-12.show-for-small.columns
+      / img has class 'columns' so the 0.9375em (15px) padding gets set.
+      = image_tag "banner-mobile.jpg", class: 'columns'
