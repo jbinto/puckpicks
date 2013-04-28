@@ -10,6 +10,9 @@
     %header
       %nav
         = render 'layouts/shared/nav'
+      %h2
+        = yield :banner
+
 
     - if flash[:notice]
       .alert.alert-success= flash[:notice]
