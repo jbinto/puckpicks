@@ -19,7 +19,7 @@
 $(function() {
 
   /* Set the colors of the score on the front page */
-  $(".score .num").each(function() {
+  $(".score").each(function() {
     var text = $(this).text();
     var num = parseInt(text, 10);
     if (num > 0) $(this).addClass("good");
