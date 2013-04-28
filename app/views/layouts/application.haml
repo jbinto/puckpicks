@@ -1,25 +1,20 @@
 !!!
 %html
   %head
+    %meta{ :charset => "utf-8" }
+    %meta{ :content => "width=device-width, initial-scale=1.0", :name => "viewport" }
     %title PuckPicks
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-
   %body
-    %header
-      %nav
+    #container.container
+      %header
         = render 'layouts/shared/nav'
-      %h2
-        = yield :banner
-
-
-    - if flash[:notice]
-      .alert.alert-success= flash[:notice]
-    - if flash[:alert]
-      .alert.alert-error= flash[:alert]
-    
-    = yield
-
-    %footer
-      &copy; 2013 [Jesse Buchanan](http://jbinto.ca). [Open source](https://github.com/jbinto/puckpicks).
+        = render 'layouts/shared/messages'
+      #main{:role => "main"}    
+        = yield
+      %footer
+        &copy; 2013
+        = link_to "Jesse Buchanan.", "http://jbinto.ca"
+        = link_to "Open source.", "https://github.com/jbinto/puckpicks"

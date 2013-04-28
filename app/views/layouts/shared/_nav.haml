@@ -1,16 +1,25 @@
-%h1.brand= link_to 'PuckPicks', root_path
-%ul  
-  - if logged_in?
-    %li= link_to 'My Picks', my_picks_path
-    - if current_user && current_user.admin?
-      %li= link_to 'Edit games', admin_games_path, class: 'admin'
-  - else
-    = link_to 'Log in', :login
-    = link_to 'Register', register_path
+.row
+  .large-12.columns
+    %nav.top-bar
+      %ul.title-area
+        %li.name
+          %h1= link_to 'PuckPicks', root_path
+        %li.toggle-topbar.menu-icon
+          = link_to '#' do
+            %span menu
+    
+      %section.top-bar-section
+        - if logged_in?
+          %ul.left
+            %li= link_to 'My Picks', [:my, :picks]
+            - if current_user && current_user.admin?
+              %li= link_to 'Edit Games', [:admin, :games], class: 'admin'
+        - else # i.e. not logged in
+          %ul.right
+            %li= link_to 'Register', :register
+            %li= link_to 'Log in', :login
 
-- if logged_in?
-  %p.user
-    Signed in as #{current_user.username}.
-    = link_to 'Log out', sessions_path, :method => :delete
-
-%p.time= "Current time #{date_and_time(Now.now)}"
+      / end of ul.title-area
+    / end of nav.top-bar
+  / end of .large-12.columns
+/ end of .row

@@ -1,78 +1,78 @@
-.navbar-text {
-  margin-right: 25px;
-}
+// .navbar-text {
+//   margin-right: 25px;
+// }
 
-span.home {
-  margin-right: 10px;
-}
+// span.home {
+//   margin-right: 10px;
+// }
 
-.admin, .navbar .nav > li > a.admin {
-  color: red;
-}
+// .admin, .navbar .nav > li > a.admin {
+//   color: red;
+// }
 
-form.edit_game {
-  margin: 0;
-}
+// form.edit_game {
+//   margin: 0;
+// }
 
-form.edit_game input[type="text"] {
-  width: 25px;
-  float: left;
-}
+// form.edit_game input[type="text"] {
+//   width: 25px;
+//   float: left;
+// }
 
-form.edit_game label {
-  float: left;
-  width: 50px;
-  margin-left: 10px;
-}
+// form.edit_game label {
+//   float: left;
+//   width: 50px;
+//   margin-left: 10px;
+// }
 
-form.edit_game input[type="submit"] {
-  @extend .btn;
-  @extend .btn-primary;
-  @extend .btn-mini;
-}
+// form.edit_game input[type="submit"] {
+//   @extend .btn;
+//   @extend .btn-primary;
+//   @extend .btn-mini;
+// }
 
-.game {
-  background-color: #dedede;
-  border-radius: 15px;
-  margin: 5px 30px 0 0;
-  padding: 10px;
-  min-height: 110px;
-}
+// .game {
+//   background-color: #dedede;
+//   border-radius: 15px;
+//   margin: 5px 30px 0 0;
+//   padding: 10px;
+//   min-height: 110px;
+// }
 
-.pick-buttons input {
-  width: 75px;
-}
+// .pick-buttons input {
+//   width: 75px;
+// }
 
-input.homeby1, input.homeby2 {
-  @extend .btn-success;
-}
+// input.homeby1, input.homeby2 {
+//   @extend .btn-success;
+// }
 
-input.awayby1, input.awayby2 {
-  @extend .btn-info;
-}
+// input.awayby1, input.awayby2 {
+//   @extend .btn-info;
+// }
 
-span.win {
-  @extend .badge;
-  @extend .badge-success;
-}
+// span.win {
+//   @extend .badge;
+//   @extend .badge-success;
+// }
 
-span.loss {
-  @extend .badge;
-  @extend .badge-important;
-}
+// span.loss {
+//   @extend .badge;
+//   @extend .badge-important;
+// }
 
-.score h4 {
-  text-transform: uppercase;
-  text-decoration: underline;
-  font-size: 16px;
-}
+// .score h4 {
+//   text-transform: uppercase;
+//   text-decoration: underline;
+//   font-size: 16px;
+// }
 
-.score {
-  font-size: 100px;
-  line-height: 100px;
-  text-align: center;
-  border-bottom: 2px dashed #dedede;
-}
+// .score {
+//   font-size: 100px;
+//   line-height: 100px;
+//   text-align: center;
+//   border-bottom: 2px dashed #dedede;
+// }
 
-.good { color: #b94a48;  }
-.bad { color: #468847; }
+// .good { color: #b94a48;  }
+// .bad { color: #468847; }
