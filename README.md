@@ -30,14 +30,17 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 * Ability to bet on today's games through the Rails interface
 * Don't let user bet on a game twice
 * Ability to enter game results manually through the web interface
+* User's scores (will be calculated on the fly for now)
 
 ### Not completed, in priority order
 
-* On picks page, split into groups: picked, open, closed
-* User's scores (will be calculated on the fly for now)
-* Leaderboards
+* Migrate CSS/Bootstrap of the picks page to Foundation
 * Allow user to withdraw their bet (until game starts)
-* Improve CSS/Bootstrap of the picks page
+* Leaderboards
+* PLAYOFFS!!
+
+* On picks page, split into groups: picked, open, closed
+
 * AJAXify the admin score updater
 * AJAXify the picks page
 * Calendar-style navigation: allow user to click "next day"
