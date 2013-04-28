@@ -1,22 +1,3 @@
-/- content_for(:banner) { "Proline for bragging rights." }
-
-/ - if logged_in?
-/   .scores
-/     %h2 
-/       Your score
-/     .score
-/       %h3 Past 24 hours
-/       .num= current_user.score_since(24.hours.ago)
-/     .score
-/       %h3 Past 7 days
-/       .num= current_user.score_since(7.days.ago)
-/     .score
-/       %h3 Past 30 days
-/       .num= current_user.score_since(30.days.ago)
-/     .score
-/       %h3 All time
-/       .num= current_user.score
-
 .row
   .large-8.columns
     %h3#games= "Games for #{date_only(Now.now)}"
@@ -25,32 +6,37 @@
       %h4.time= time_only(game.faceoff_time)
       %ul.large-block-grid-4.small-block-grid-4.game
         %li
-          = link_to "#{game.away.code} +1", "#", class: "success round button"
-          = link_to "#{game.away.code} +2", "#", class: "success round button"
+          = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1
+          = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2
+          / = link_to "#{game.away.code} +1", "#", class: "success round button"
+          / = link_to "#{game.away.code} +2", "#", class: "success round button"
         %li= image_tag "#{game.away.code}.png"
         %li= image_tag "#{game.home.code}.png"
         %li
-          = link_to "#{game.home.code} +1", "#", class: "success round button"
-          = link_to "#{game.home.code} +2", "#", class: "success round button"
+          = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1
+          = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2
+          / = link_to "#{game.home.code} +1", "#", class: "success round button"
+          / = link_to "#{game.home.code} +2", "#", class: "success round button"
   .large-4.small-12.small-centered.columns
-    %h3= "#{current_user.username}'s score"
-    %table
-      %tr
-        %td Past 24 hours
-        %td
-          %span.score= current_user.score_since(24.hours.ago)
-      %tr
-        %td Past 7 days
-        %td
-          %span.score= current_user.score_since(7.days.ago)
-      %tr
-        %td Past 30 days
-        %td
-          %span.score= current_user.score_since(30.days.ago)
-      %tr.bold
-        %td All-time
-        %td
-          %span.score= current_user.score
+    - if logged_in?
+      %h3= "#{current_user.username}'s score"
+      %table
+        %tr
+          %td Past 24 hours
+          %td
+            %span.score= current_user.score_since(24.hours.ago)
+        %tr
+          %td Past 7 days
+          %td
+            %span.score= current_user.score_since(7.days.ago)
+        %tr
+          %td Past 30 days
+          %td
+            %span.score= current_user.score_since(30.days.ago)
+        %tr.bold
+          %td All-time
+          %td
+            %span.score= current_user.score
 
 .row
 - @today_games.each do |game|
