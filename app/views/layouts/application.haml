@@ -15,7 +15,13 @@
       #main{:role => "main"}    
         = render 'layouts/shared/carousel'
         = yield
-      %footer
-        &copy; 2013
-        = link_to "Jesse Buchanan.", "http://jbinto.ca"
-        = link_to "Open source.", "https://github.com/jbinto/puckpicks"
+    %footer.row
+      .large-12.columns
+        %hr
+        .row
+          .large-6.columns
+            &copy; 2013
+            = link_to "Jesse Buchanan.", "http://jbinto.ca"
+          .large-6.columns.right
+            = link_to "Open source.", "https://github.com/jbinto/puckpicks"
+            Pull requests welcome :)
