@@ -82,3 +82,32 @@
 table { width: 100%; }
 
 .bold { font-weight: bold; }
+
+ul.game {
+  &:nth-child(even) { background: white; }
+  &:nth-child(odd) { background: #f9f9f9; }
+
+  border: solid 1px #dddddd;
+  margin-bottom: 10px;
+  li {
+    margin-top: 25px;
+  }
+}
+
+h4.time { 
+  background-color: white; 
+  margin-top: 25px; 
+  border: 1px dashed #dedede;
+  font-size: 1.2em;
+  margin-bottom: 0;
+  display: inline;
+}
+
+h4.time.closed {
+  opacity: 0.5;
+}
+
+.game ul.closed {
+  zoom: 0.5;
+  opacity: 0.3;
+}

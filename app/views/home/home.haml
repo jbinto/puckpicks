@@ -1,22 +1,19 @@
 .row
   .large-8.columns
     %h3#games= "Games for #{date_only(Now.now)}"
-    
+    %p= "Current time: #{date_and_time(Now.now)}"
+
     - @today_games.each do |game|
       %h4.time= time_only(game.faceoff_time)
       %ul.large-block-grid-4.small-block-grid-4.game
         %li
           = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1
           = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2
-          / = link_to "#{game.away.code} +1", "#", class: "success round button"
-          / = link_to "#{game.away.code} +2", "#", class: "success round button"
         %li= image_tag "#{game.away.code}.png"
         %li= image_tag "#{game.home.code}.png"
         %li
           = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1
           = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2
-          / = link_to "#{game.home.code} +1", "#", class: "success round button"
-          / = link_to "#{game.home.code} +2", "#", class: "success round button"
   .large-4.small-12.small-centered.columns
     - if logged_in?
       %h3= "#{current_user.username}'s score"

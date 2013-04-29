@@ -1,0 +1,18 @@
+%h3= "#{current_user.username}'s score"
+%table
+  %tr
+    %td Past 24 hours
+    %td
+      %span.score= current_user.score_since(24.hours.ago)
+  %tr
+    %td Past 7 days
+    %td
+      %span.score= current_user.score_since(7.days.ago)
+  %tr
+    %td Past 30 days
+    %td
+      %span.score= current_user.score_since(30.days.ago)
+  %tr.bold
+    %td All-time
+    %td
+      %span.score= current_user.score
