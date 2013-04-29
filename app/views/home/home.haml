@@ -20,21 +20,25 @@
           = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2
   .large-4.small-12.small-centered.columns
     - if logged_in?
-      %h3= "#{current_user.username}'s score"
-      %table
-        %tr
-          %td Past 24 hours
-          %td
-            %span.score= current_user.score_since(24.hours.ago)
-        %tr
-          %td Past 7 days
-          %td
-            %span.score= current_user.score_since(7.days.ago)
-        %tr
-          %td Past 30 days
-          %td
-            %span.score= current_user.score_since(30.days.ago)
-        %tr.bold
-          %td All-time
-          %td
-            %span.score= current_user.score
+      = render 'shared/current_users_score'
+
+.row
+- @today_games.each do |game|
+  .span2.game
+    %p
+      %strong= game.away.code
+      at
+      %strong= game.home.code
+      ="(#{time_only(game.faceoff_time)})"
+    - if game.started?
+      %em Betting closed.
+    - elsif logged_in? && (pick = @my_picks.find { |pick| pick.game == game}).present?
+      - # The code above is too complex for a view, but I'm not sure how to deal with it as a helper.
+      %em= "You picked #{pick.text}."
+    - else
+      .pick-buttons
+        = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1
+        = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2
+      .pick-buttons
+        = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1
+        = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2
