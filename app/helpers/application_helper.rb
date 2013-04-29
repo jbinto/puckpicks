@@ -13,4 +13,8 @@ module ApplicationHelper
     def date_and_time(date)
       date.localtime.strftime('%A, %b %d %l:%M %p').strip
     end
+
+    def find_pick_by_game(picks, game)
+      picks.find { |pick| pick.game == game}
+    end
 end

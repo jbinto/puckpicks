@@ -1,14 +1,20 @@
-%h4.time
+- pick = logged_in? ? find_pick_by_game(@my_picks, game) : nil
+
+%h4.time    
   = time_only(game.faceoff_time)
   = " (Betting closed)" if game.started?
+  = " (You picked #{pick.text})" if pick.present?
 - css_class = "large-block-grid-4 small-block-grid-4 game"
 - css_class += " closed" if game.started?
+- css_class += " picked" if pick.present?
 %ul{ class: css_class }
   %li
-    = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1
-    = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2
+    - unless pick.present?
+      = render 'shared/pick_button', game: game, team: game.away, spread_wager: 1
+      = render 'shared/pick_button', game: game, team: game.away, spread_wager: 2
   %li= image_tag "#{game.away.code}.png"
   %li= image_tag "#{game.home.code}.png"
   %li
-    = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1
-    = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2
+    - unless pick.present?
+      = render 'shared/pick_button', game: game, team: game.home, spread_wager: 1
+      = render 'shared/pick_button', game: game, team: game.home, spread_wager: 2
