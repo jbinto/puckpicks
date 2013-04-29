@@ -6,7 +6,7 @@ class Now
     # Time.zone.now.class => ActiveSupport::TimeWithZone
 
     if MOCK
-      Time.zone.parse('2013-04-27 18:00:00')
+      Time.zone.parse('2013-04-30 18:00:00')
     else
       Time.zone.now
     end
@@ -17,7 +17,7 @@ class Now
     # Time.zone.now.class => ActiveSupport::TimeWithZone
 
     if MOCK
-      Date.parse('2013-04-27')
+      Date.parse('2013-04-30')
     else
       Time.zone.today
     end
