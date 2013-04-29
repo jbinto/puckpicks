@@ -9,6 +9,8 @@ gem 'sorcery'
 gem 'haml'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'newrelic_rpm'
+
 
 group :development do
   gem 'better_errors'
