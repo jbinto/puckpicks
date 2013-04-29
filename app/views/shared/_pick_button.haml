@@ -6,4 +6,6 @@
     /- css_class = (team == game.home) ? "home" : "away"
     /- css_class += (spread_wager == 1) ? "by1" : "by2"
     - css_class = "success round button"
-  = f.submit "#{team.code} +#{spread_wager}", class: "btn #{css_class}"
+    - css_class += " disabled" if game.started?
+
+  = f.submit "#{team.code} +#{spread_wager}", class: "#{css_class}", disabled: game.started?
