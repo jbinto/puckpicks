@@ -81,7 +81,10 @@
 
 table { width: 100%; }
 
-.bold { font-weight: bold; }
+.all-time { 
+  font-weight: bold; 
+  font-size: 1.5em;
+}
 
 ul.game {
   &:nth-child(even) { background: white; }
