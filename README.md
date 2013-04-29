@@ -31,13 +31,13 @@ This is pre-alpha software. Not all of the rules are implemented yet.
 * Don't let user bet on a game twice
 * Ability to enter game results manually through the web interface
 * User's scores (will be calculated on the fly for now)
+* Migrate CSS/Bootstrap of the picks page to Foundation
 
 ### Not completed, in priority order
 
-* Migrate CSS/Bootstrap of the picks page to Foundation
+* PLAYOFFS!!
 * Allow user to withdraw their bet (until game starts)
 * Leaderboards
-* PLAYOFFS!!
 
 * On picks page, split into groups: picked, open, closed
 
@@ -61,7 +61,7 @@ This is pre-alpha software. Not all of the rules are implemented yet.
  * Same thing goes on the uniqueness validations: ActiveRecord doesn't seem to be smart enough to think in terms of `home` and `away`, rather you have to specify `home_id`.
 
 
- ### Questions to be answered
+### Questions to be answered
 
 * My models are really getting big. What's the conventional way to organize them? e.g. order of associations, filters, scopes, helper methods, validations.
 * Was it worth creating all of this validation, or am I bringing my old static-language habits into Ruby?
