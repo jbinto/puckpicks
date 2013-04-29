@@ -23,5 +23,5 @@
           %td
             = pick.game.boxscore
           %td
-            - css_class = pick.impact > 0 ? "win" : "loss"
-            %span{class: css_class}= pick.impact
+            - css_class = pick.impact > 0 ? "success" : "alert"
+            %span{class: "round label #{css_class}"}= pick.impact
