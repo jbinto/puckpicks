@@ -1,12 +1,12 @@
 class Now
-  MOCK = false
+  MOCK = true
 
   def self.now
     # Time.zone.now => Thu, 18 Apr 2013 23:07:53 EDT -04:00
     # Time.zone.now.class => ActiveSupport::TimeWithZone
 
     if MOCK
-      Time.zone.parse('2013-04-18 15:00:00')
+      Time.zone.parse('2013-04-27 20:00:00')
     else
       Time.zone.now
     end
@@ -17,7 +17,7 @@ class Now
     # Time.zone.now.class => ActiveSupport::TimeWithZone
 
     if MOCK
-      Date.parse('2013-04-18')
+      Date.parse('2013-04-27')
     else
       Time.zone.today
     end
