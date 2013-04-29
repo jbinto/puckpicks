@@ -1,32 +1,33 @@
-%h2.admin Edit games
+.row
+  .large-12.columns
 
-.well.well-small
-  %h3 Started games for the past 7 days
-  - if @games.count == 0
-    None.
-  - else
-    %table.table.table-striped.table-hover
-      %tr
-        %th Game# 
-        %th Date
-        %th Away
-        %th Home  
-        %th Picks    
-        %th Result
-      - @games.each do |game|
-        - if game.started?
-          - css_class = "error" if game.picks.count > 0 
-          - css_class = "success" if game.finished?
-          %tr{class: css_class}
-            %td= "##{game.id}"
-            %td= date_and_time(game.faceoff_time)
-            %td= game.away.full_name
-            %td= game.home.full_name
-            %td= game.picks.count
-            %td
-              = form_for [:admin, game] do |f|
-                = f.label :away_score, game.away.code
-                = f.text_field :away_score
-                = f.label :home_score, game.home.code
-                = f.text_field :home_score
-                = f.submit "Set"
+    %h2.admin Edit games
+    %h3 Started games for the past 7 days
+    - if @games.count == 0
+      None.
+    - else
+      %table.table.table-striped.table-hover
+        %tr
+          %th Game# 
+          %th Date
+          %th Away
+          %th Home  
+          %th Picks    
+          %th Result
+        - @games.each do |game|
+          - if game.started?
+            - css_class = "error" if game.picks.count > 0 
+            - css_class = "success" if game.finished?
+            %tr{class: css_class}
+              %td= "##{game.id}"
+              %td= date_and_time(game.faceoff_time)
+              %td= game.away.full_name
+              %td= game.home.full_name
+              %td= game.picks.count
+              %td
+                = form_for [:admin, game] do |f|
+                  = f.label :away_score, game.away.code
+                  = f.text_field :away_score
+                  = f.label :home_score, game.home.code
+                  = f.text_field :home_score
+                  = f.submit "Set"

@@ -16,16 +16,16 @@
 //   margin: 0;
 // }
 
-// form.edit_game input[type="text"] {
-//   width: 25px;
-//   float: left;
-// }
+form.edit_game input[type="text"] {
+  width: 25px;
+  float: left;
+}
 
-// form.edit_game label {
-//   float: left;
-//   width: 50px;
-//   margin-left: 10px;
-// }
+form.edit_game label {
+  float: left;
+  width: 50px;
+  margin-left: 10px;
+}
 
 // form.edit_game input[type="submit"] {
 //   @extend .btn;
