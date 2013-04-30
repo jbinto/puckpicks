@@ -1,0 +1,11 @@
+%h3 Leaderboards
+%table
+  %tr
+    %th #
+    %th User
+    %th Points
+  - @leaders.each_with_index do |leader|
+    %tr{class: leader[:position] == 1 ? "first-place" : ""}
+      %td= leader[:position]
+      %td= leader[:username]
+      %td= leader[:points]

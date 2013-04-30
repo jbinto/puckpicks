@@ -22,7 +22,7 @@ form.edit_game label {
 
 table { width: 100%; }
 
-.all-time { 
+.all-time, .first-place { 
   font-weight: bold; 
   font-size: 1.5em;
 }
@@ -68,3 +68,4 @@ footer {
   text-align: center;
 }
 
+th { text-align: left; }
