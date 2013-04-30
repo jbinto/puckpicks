@@ -1,5 +1,5 @@
 class Now
-  MOCK = true
+  MOCK = false
 
   def self.now
     # Time.zone.now => Thu, 18 Apr 2013 23:07:53 EDT -04:00
