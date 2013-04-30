@@ -1,11 +1,11 @@
 .row
-  .large-8.columns
+  .large-8.small-12.columns
     %h3#games= "Games for #{date_only(Now.now)}"
     %p= "Current time: #{date_and_time(Now.now)}"
 
     - @today_games.each do |game|
       = render 'shared/pick_form', game: game
-  .large-4.small-12.small-centered.columns
+  .large-4.small-12.columns
 
     - if logged_in?
       = render 'shared/current_users_score'
