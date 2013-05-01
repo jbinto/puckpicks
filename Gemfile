@@ -11,8 +11,6 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'newrelic_rpm'
 
-# Attempt to get better stack traces on Heroku when PSQL times out
-gem 'rack-timeout'
 
 group :development do
   gem 'better_errors'

@@ -136,7 +136,6 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rack-timeout (0.0.4)
     rails (3.2.13)
       actionmailer (= 3.2.13)
       actionpack (= 3.2.13)
@@ -211,7 +210,6 @@ DEPENDENCIES
   newrelic_rpm
   pg
   pry-rails
-  rack-timeout
   rails (= 3.2.13)
   rb-inotify
   sass-rails (~> 3.2.3)
