@@ -10,4 +10,12 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+
+  # Boilerplate for integration tests
+  class ActionDispatch::IntegrationTest
+    include Capybara::DSL
+    Capybara.app = Puckpicks::Application
+  end
+
 end
