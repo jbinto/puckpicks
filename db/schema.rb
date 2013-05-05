@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503144015) do
+ActiveRecord::Schema.define(:version => 20130505175208) do
 
   create_table "games", :force => true do |t|
     t.datetime "faceoff_time",                    :null => false
