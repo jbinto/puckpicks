@@ -25,7 +25,7 @@
               %td= game.home.full_name
               %td= game.picks.count
               %td
-                = form_for [:admin, game] do |f|
+                = form_for [:admin, game], namespace: game.id do |f|
                   = f.label :away_score, game.away.code
                   = f.text_field :away_score
                   = f.label :home_score, game.home.code
